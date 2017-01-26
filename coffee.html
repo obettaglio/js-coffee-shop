@@ -54,8 +54,19 @@
     var espresso = document.getElementById("espresso");
     var latte = document.getElementById("latte");
     var hotChocolate = document.getElementById("hot-chocolate");
+    var myRevenueMessage = document.getElementById("revenue");
 
     myImage.setAttribute('src', 'static/coffee_beans.jpg');
+
+    var revenueTotal = 0;
+    var revenue = function() {
+        for (var drink of drinksOrdered) {
+            var drink_price = prices[drink];
+            revenueTotal += drink_price;
+        };
+        console.log(revenueTotal);
+        return revenueTotal;
+    };
 
     var makeCoffee = function(drinkType) {
         myImage.setAttribute('src', 'static/coffee_machine.jpg');
@@ -63,6 +74,7 @@
         setTimeout(function() {myImage.setAttribute('src', 'static/coffee_beans.jpg');}, 4000);
         drinksOrdered.push(drinkType);
         console.log(drinksOrdered);
+        myRevenueMessage.setAttribute('span', revenue());
     };
 
     myImage.addEventListener('click', function () { return makeCoffee("brew");});
@@ -70,8 +82,6 @@
     latte.addEventListener('click', function () { return makeCoffee("latte");});
     hotChocolate.addEventListener('click', function () { return makeCoffee("hot-chocolate");});
 
-
-    var myRevenueMessage = document.getElementById("revenue");
 
     // use this JavaScript object in further study step
 
