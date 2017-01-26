@@ -48,16 +48,28 @@
 
     // Set these variables to their DOM elements
 
+    var drinksOrdered = [];
+
     var myImage = document.getElementById("coffee-image");
+    var espresso = document.getElementById("espresso");
+    var latte = document.getElementById("latte");
+    var hotChocolate = document.getElementById("hot-chocolate");
+
     myImage.setAttribute('src', 'static/coffee_beans.jpg');
 
-    var makeCoffee = function() {
+    var makeCoffee = function(drinkType) {
         myImage.setAttribute('src', 'static/coffee_machine.jpg');
         setTimeout(function() {myImage.setAttribute('src', 'static/coffee_mug.jpg');}, 1500);
         setTimeout(function() {myImage.setAttribute('src', 'static/coffee_beans.jpg');}, 4000);
+        drinksOrdered.push(drinkType);
+        console.log(drinksOrdered);
     };
 
-    myImage.addEventListener('click', makeCoffee);
+    myImage.addEventListener('click', function () { return makeCoffee("brew");});
+    espresso.addEventListener('click', function () { return makeCoffee("espresso");});
+    latte.addEventListener('click', function () { return makeCoffee("latte");});
+    hotChocolate.addEventListener('click', function () { return makeCoffee("hot-chocolate");});
+
 
     var myRevenueMessage = document.getElementById("revenue");
 
